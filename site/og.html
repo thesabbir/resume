@@ -1,0 +1,40 @@
+<!doctype html>
+<!-- Source for og.png. Regenerate after editing:
+     google-chrome --headless=new --hide-scrollbars --window-size=1200,630 \
+       --force-device-scale-factor=2 --screenshot=og.png "file://$PWD/site/og.html"
+     then: node site/build.mjs  (copies og.png into dist/) -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  *{margin:0; box-sizing:border-box}
+  html,body{width:1200px; height:630px; overflow:hidden}
+  body{
+    background:#0B0E14; color:#E9E6DD;
+    font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    padding:84px 92px; display:flex; flex-direction:column; justify-content:space-between;
+    position:relative;
+  }
+  body::before{content:""; position:absolute; left:0; top:0; bottom:0; width:8px; background:#C9A14A}
+  .eyebrow{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace;
+    font-size:20px; letter-spacing:.22em; text-transform:uppercase; color:#9DB7EA}
+  .name{font-size:96px; font-weight:600; letter-spacing:-.02em; line-height:1; margin:26px 0 30px}
+  .line{font-size:40px; line-height:1.28; color:#CFCABB; max-width:20ch; letter-spacing:-.01em}
+  .foot{display:flex; justify-content:space-between; align-items:baseline;
+    font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace; font-size:21px;
+    letter-spacing:.06em; color:#8B93A5}
+  .foot .url{color:#C9A14A}
+</style>
+</head>
+<body>
+  <div>
+    <div class="eyebrow">Product Engineer · AI-Agent Orchestration</div>
+    <div class="name">Sabbir Ahmed</div>
+    <div class="line">I build products by conducting AI agents — and designing the systems that keep them honest.</div>
+  </div>
+  <div class="foot">
+    <span>10+ years · zero-to-launch</span>
+    <span class="url">thesabbir.github.io/resume</span>
+  </div>
+</body>
+</html>

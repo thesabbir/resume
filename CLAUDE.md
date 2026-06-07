@@ -44,6 +44,8 @@ A personal-brand site whose **thesis is its own craft**: it must stay hand-built
 
 - `site/build.mjs` — the entire build: a **zero-dependency** Node script. It renders the curated narrative (hero one-liner, *How I work*, *Selected work*, contact, colophon), converts the résumé `.md` to HTML with a small purpose-built parser, inlines all CSS, copies the PDF/DOCX as download assets, and **measures its own output** to fill the colophon's page-weight figure. No `npm install`, no `node_modules`.
 - Output is `dist/` (git-ignored; CI rebuilds it). One HTML file, inline CSS, **no web fonts** (system stack), **no client JS**.
+- `og.png` (repo root, **committed**) is the social share card. It's rendered from `site/og.html` with headless Chrome — CI has no browser, so regenerate it locally and commit when the hero copy changes: `google-chrome --headless=new --hide-scrollbars --window-size=1200,630 --force-device-scale-factor=1 --screenshot=og.png "file://$PWD/site/og.html"`. Keep it exactly 1200×630 (the `og:image` meta declares those dims).
+- Heading outline is deliberate and must stay un-skipped: hero `h1` → section titles `h2.label` (auto-numbered via CSS counters) → CV name `h3` → CV parts `h4` → job titles `h5`. The full CV lives inside a `<details>` expander so the curated *Selected work* leads.
 
 ```bash
 node site/build.mjs          # build → dist/

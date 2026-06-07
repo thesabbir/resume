@@ -23,13 +23,17 @@ const DOCX = "Sabbir_Ahmed_Resume_2026.docx";
    page; invented specifics would betray the brand it sells.
 ---------------------------------------------------------------------------- */
 
+const SITE_URL = "https://thesabbir.github.io/resume/";
+
 const content = {
   name: "Sabbir Ahmed",
   tagline: "Product Engineer · AI-Agent Orchestration",
+  eyebrow: "Product Engineer · Dhaka, Bangladesh · Remote",
   headline:
     "I build products by conducting AI&nbsp;agents&nbsp;— and designing the systems that keep&nbsp;them&nbsp;honest.",
   intro:
     "Product engineer, 10+ years taking things zero-to-launch across Norway, the US, the UAE and Finland — a founding role through acquisition, a CTO seat, and now a stealth venture I'm building solo, at a scope that used to take a team.",
+  contactLine: "Email is the surest way to reach me.",
   links: [
     { label: "Email", href: "mailto:sabbirahmed8361@gmail.com", text: "sabbirahmed8361@gmail.com" },
     { label: "GitHub", href: "https://github.com/thesabbir", text: "github.com/thesabbir" },
@@ -124,14 +128,17 @@ function renderMarkdown(md) {
     if (!line.trim()) {
       flush();
     } else if (line.startsWith("### ")) {
+      // Job titles — deepest level, nested under the résumé section <h2>.
       flush();
-      out.push(`<h3>${inline(line.slice(4))}</h3>`);
+      out.push(`<h5>${inline(line.slice(4))}</h5>`);
     } else if (line.startsWith("## ")) {
+      // CV parts: Summary, Experience, Technical Skills, Education.
       flush();
       out.push(`<h4>${inline(line.slice(3))}</h4>`);
     } else if (line.startsWith("# ")) {
+      // The CV name — a sub-heading of the "Full résumé" section.
       flush();
-      out.push(`<h2 class="cv-name">${inline(line.slice(2))}</h2>`);
+      out.push(`<h3 class="cv-name">${inline(line.slice(2))}</h3>`);
     } else if (line.startsWith("- ")) {
       flushPara();
       list.push(line.slice(2));
@@ -147,7 +154,7 @@ function renderMarkdown(md) {
 /* ---------------------------------------------------------------------------- */
 
 const linkRow = content.links
-  .map((l) => `<a href="${l.href}">${l.text}</a>`)
+  .map((l) => `<a class="u" href="${l.href}">${l.text}</a>`)
   .join('<span class="dot">·</span>');
 
 const workRows = content.work
@@ -183,9 +190,18 @@ const html = `<!doctype html>
 <title>${content.name} — ${content.tagline}</title>
 <meta name="description" content="${content.name}. I build products by conducting AI agents — and designing the systems that keep them honest. 10+ years zero-to-launch.">
 <meta name="author" content="${content.name}">
+<link rel="canonical" href="${SITE_URL}">
 <meta property="og:title" content="${content.name} — Product Engineer">
 <meta property="og:description" content="I build products by conducting AI agents — and designing the systems that keep them honest.">
 <meta property="og:type" content="profile">
+<meta property="og:url" content="${SITE_URL}">
+<meta property="og:image" content="${SITE_URL}og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${content.name} — Product Engineer">
+<meta name="twitter:description" content="I build products by conducting AI agents — and designing the systems that keep them honest.">
+<meta name="twitter:image" content="${SITE_URL}og.png">
 <link rel="icon" href="${favicon}">
 <style>
   :root{
@@ -207,9 +223,17 @@ const html = `<!doctype html>
     -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
     font-feature-settings:"kern","liga","onum","pnum";
   }
-  .wrap{max-width:var(--max); margin:0 auto; padding:0 clamp(1.25rem,5vw,2rem)}
+  body{hanging-punctuation:first last}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 clamp(1.25rem,5vw,2rem);
+    counter-reset:section}
   a{color:inherit; text-decoration:none}
   .mono{font-family:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace}
+  /* links: a faint resting underline that an accent line wipes over on hover */
+  .u{background-image:linear-gradient(var(--accent),var(--accent));
+    background-repeat:no-repeat; background-position:0 100%; background-size:0 1px;
+    padding-bottom:2px; border-bottom:1px solid var(--hair);
+    transition:background-size .4s cubic-bezier(.2,.7,.2,1), color .3s, border-color .3s}
+  .u:hover{color:var(--ink); background-size:100% 1px; border-color:transparent}
 
   /* ---- header ---- */
   header{display:flex; justify-content:space-between; align-items:baseline;
@@ -220,26 +244,30 @@ const html = `<!doctype html>
   nav a:hover{color:var(--ink)}
 
   /* ---- hero ---- */
-  .hero{padding:clamp(4rem,16vh,9rem) 0 clamp(3rem,9vh,5rem)}
+  .hero{padding:clamp(2.75rem,11vh,6rem) 0 clamp(2.5rem,8vh,4.5rem)}
+  .eyebrow{font-family:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
+    font-size:.72rem; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--accent); margin:0 0 1.5rem}
   h1{
-    font-weight:540; font-size:clamp(2.1rem,6.2vw,4rem); line-height:1.06;
-    letter-spacing:-.018em; margin:0 0 1.4rem; max-width:20ch;
+    font-weight:540; font-size:clamp(2.2rem,6.4vw,4.15rem); line-height:1.04;
+    letter-spacing:-.023em; margin:0 0 1.5rem; max-width:19ch;
     text-wrap:balance;
   }
-  .intro{font-size:clamp(1.02rem,2.4vw,1.22rem); color:var(--muted);
-    max-width:40ch; margin:0 0 1.8rem; line-height:1.5}
+  .intro{font-size:clamp(1.04rem,2.4vw,1.26rem); color:var(--muted);
+    max-width:42ch; margin:0 0 2rem; line-height:1.5; text-wrap:pretty}
   .links{font-size:.86rem; color:var(--muted)}
-  .links a{border-bottom:1px solid var(--hair); padding-bottom:1px;
-    transition:border-color .25s, color .25s}
-  .links a:hover{color:var(--ink); border-color:var(--accent)}
-  .dot{margin:0 .55rem; opacity:.5}
+  .dot{margin:0 .55rem; opacity:.45}
 
   /* ---- sections ---- */
-  section{padding:clamp(2.4rem,7vw,3.6rem) 0; border-top:1px solid var(--hair)}
-  .label{font-family:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
-    font-size:.7rem; letter-spacing:.2em; text-transform:uppercase;
-    color:var(--accent); margin:0 0 1.6rem; display:block}
-  .prose p{margin:0 0 1.15rem; max-width:62ch}
+  section{padding:clamp(2.6rem,7vw,3.8rem) 0; border-top:1px solid var(--hair)}
+  /* section titles are real <h2>, styled as numbered mono labels */
+  h2.label{font-family:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
+    font-size:.7rem; font-weight:400; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--accent); margin:0 0 1.7rem; display:flex; align-items:baseline; gap:.7rem}
+  section > h2.label::before{counter-increment:section;
+    content:counter(section,decimal-leading-zero);
+    color:var(--muted); font-size:.78rem; letter-spacing:.08em}
+  .prose p{margin:0 0 1.2rem; max-width:62ch; text-wrap:pretty}
   .prose p:last-child{margin-bottom:0}
 
   /* ---- selected work ---- */
@@ -264,13 +292,27 @@ const html = `<!doctype html>
   .btn.ghost{background:transparent; color:var(--accent);
     box-shadow:inset 0 0 0 1px var(--accent)}
   .btn:hover{transform:translateY(-1px); opacity:.92}
+
+  /* full résumé tucked into an expander so the curated work leads */
+  details.cv-details{margin:0}
+  details.cv-details summary{list-style:none; cursor:pointer; display:inline-flex;
+    align-items:center; gap:.5rem; width:max-content;
+    font-family:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
+    font-size:.74rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted);
+    transition:color .25s}
+  details.cv-details summary::-webkit-details-marker{display:none}
+  details.cv-details summary:hover{color:var(--ink)}
+  details.cv-details summary::after{content:"\\2193"; transition:transform .3s; opacity:.7}
+  details.cv-details[open] summary{margin-bottom:1.4rem}
+  details.cv-details[open] summary::after{transform:rotate(180deg)}
+
   .cv{border:1px solid var(--hair); border-radius:.9rem; background:var(--panel);
     padding:clamp(1.4rem,4vw,2.4rem); font-size:.92rem}
-  .cv .cv-name{font-size:1.5rem; letter-spacing:-.01em; margin:0 0 .1rem}
+  .cv .cv-name{font-size:1.5rem; font-weight:560; letter-spacing:-.01em; margin:0 0 .1rem}
   .cv h4{font-family:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
-    font-size:.7rem; letter-spacing:.18em; text-transform:uppercase; color:var(--accent);
+    font-size:.7rem; font-weight:400; letter-spacing:.18em; text-transform:uppercase; color:var(--accent);
     margin:1.8rem 0 .7rem; padding-bottom:.4rem; border-bottom:1px solid var(--hair)}
-  .cv h3{font-size:1.05rem; font-weight:560; margin:1.25rem 0 .15rem}
+  .cv h5{font-size:1.05rem; font-weight:560; margin:1.25rem 0 .15rem}
   .cv p{margin:.15rem 0 .5rem; color:var(--ink)}
   .cv em{color:var(--muted); font-style:italic}
   .cv ul{margin:.3rem 0 .8rem; padding-left:1.1rem}
@@ -278,24 +320,37 @@ const html = `<!doctype html>
   .cv li::marker{color:var(--accent)}
 
   /* ---- contact + colophon ---- */
+  .contact-line{margin:0 0 1.1rem; max-width:48ch}
   .contact .links{font-size:1rem}
   footer{border-top:1px solid var(--hair); padding:2.4rem 0 4rem;
     color:var(--muted); font-size:.82rem; line-height:1.7}
   footer .label{color:var(--muted)}
   footer code{font-family:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
     color:var(--ink); font-size:.92em}
-  footer a{border-bottom:1px solid var(--hair)}
-  footer a:hover{color:var(--ink)}
+  footer code{color:var(--ink)}
 
   /* ---- the one motion moment: a quiet load reveal ---- */
   @media (prefers-reduced-motion: no-preference){
     .reveal{opacity:0; transform:translateY(10px); animation:rise .8s cubic-bezier(.2,.7,.2,1) forwards}
-    .reveal.d1{animation-delay:.05s}
-    .reveal.d2{animation-delay:.18s}
-    .reveal.d3{animation-delay:.31s}
+    .reveal.d1{animation-delay:.04s}
+    .reveal.d2{animation-delay:.14s}
+    .reveal.d3{animation-delay:.26s}
+    .reveal.d4{animation-delay:.38s}
     @keyframes rise{to{opacity:1; transform:none}}
   }
   ::selection{background:var(--accent); color:var(--bg)}
+
+  /* ---- print: a clean fallback; the PDF download is the real artifact ---- */
+  @media print{
+    :root{--bg:#fff; --panel:#fff; --ink:#000; --muted:#333; --accent:#1a3e6f; --hair:#ccc}
+    header nav, .actions, .links, .contact-line, footer, .eyebrow{display:none}
+    .reveal{opacity:1; transform:none; animation:none}
+    section{border-top:1px solid #ccc; padding:1rem 0}
+    .cv{border:0; padding:0}
+    details.cv-details summary{display:none}
+    details.cv-details > .cv{display:block}  /* force the résumé open when printing */
+    a{color:#000}
+  }
 </style>
 </head>
 <body>
@@ -311,65 +366,79 @@ const html = `<!doctype html>
   </header>
 
   <div class="hero">
-    <h1 class="reveal d1">${content.headline}</h1>
-    <p class="intro reveal d2">${content.intro}</p>
-    <div class="links reveal d3">${linkRow}</div>
+    <div class="eyebrow reveal d1">${content.eyebrow}</div>
+    <h1 class="reveal d2">${content.headline}</h1>
+    <p class="intro reveal d3">${content.intro}</p>
+    <div class="links reveal d4">${linkRow}</div>
   </div>
 
   <section id="method">
-    <span class="label">How I work</span>
+    <h2 class="label">How I work</h2>
     <div class="prose">
         ${methodHtml}
     </div>
   </section>
 
   <section id="work">
-    <span class="label">Selected work</span>
+    <h2 class="label">Selected work</h2>
     <ul class="work-list">${workRows}
     </ul>
     <p class="earlier">${content.earlier}</p>
   </section>
 
   <section id="resume">
-    <span class="label">Full résumé</span>
+    <h2 class="label">Full résumé</h2>
     <div class="actions">
       <a class="btn" href="${PDF}" download>Download PDF</a>
       <a class="btn ghost" href="${DOCX}" download>Download DOCX</a>
     </div>
-    <article class="cv">
+    <details class="cv-details">
+      <summary><span>Read the full résumé</span></summary>
+      <article class="cv">
 ${resumeHtml}
-    </article>
+      </article>
+    </details>
   </section>
 
   <section id="contact" class="contact">
-    <span class="label">Contact</span>
+    <h2 class="label">Contact</h2>
+    <p class="contact-line">${content.contactLine}</p>
     <div class="links">${linkRow}</div>
   </section>
 
   <footer>
-    <span class="label">Colophon</span>
+    <h2 class="label">Colophon</h2>
     One hand-written HTML file with inline CSS. No framework, no runtime JavaScript,
     no web fonts — it uses your system's own typefaces. Built from a single Markdown
     résumé by a zero-dependency script; the document weighs <code>__PAGE_SIZE__</code>
     and renders in one request. Dark mode follows your system.
-    Source on <a href="https://github.com/thesabbir/resume">GitHub</a>.
+    Source on <a class="u" href="https://github.com/thesabbir/resume">GitHub</a>.
   </footer>
 
 </div>
 </body>
 </html>`;
 
-/* ---- write, then measure self, then rewrite with the true size ---- */
+/* ---- self-measure to a fixed point: the printed size IS the file size ----
+   The size string lives inside the file, so substituting it changes the byte
+   count. Iterate until the figure stops moving (converges in 1–2 passes). */
 mkdirSync(DIST, { recursive: true });
 const outFile = join(DIST, "index.html");
-writeFileSync(outFile, html);
-const bytes = statSync(outFile).size;
-const kb = (bytes / 1024).toFixed(1) + " KB";
-writeFileSync(outFile, html.replace("__PAGE_SIZE__", kb));
+const fmt = (s) => (Buffer.byteLength(html.replace("__PAGE_SIZE__", s), "utf8") / 1024).toFixed(1) + " KB";
+let kb = fmt("00.0 KB");
+for (let i = 0; i < 5; i++) {
+  const next = fmt(kb);
+  if (next === kb) break;
+  kb = next;
+}
+const finalHtml = html.replace("__PAGE_SIZE__", kb);
+writeFileSync(outFile, finalHtml);
+const trueBytes = statSync(outFile).size; // sanity: matches the printed figure
 
 copyFileSync(join(ROOT, PDF), join(DIST, PDF));
 copyFileSync(join(ROOT, DOCX), join(DIST, DOCX));
+copyFileSync(join(ROOT, "og.png"), join(DIST, "og.png"));
 writeFileSync(join(DIST, ".nojekyll"), "");
 
-console.log(`built dist/index.html — ${kb} (${bytes} bytes)`);
-console.log(`copied ${PDF}, ${DOCX}`);
+console.log(`built dist/index.html — colophon says ${kb}, file is ${trueBytes} bytes`);
+console.log(`copied ${PDF}, ${DOCX}, og.png`);
