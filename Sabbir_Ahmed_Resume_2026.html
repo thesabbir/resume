@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sabbir Ahmed — Resume</title>
+<style>
+  @page { size: letter; margin: 0.42in 0.55in; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Calibri", "Carlito", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a;
+    font-size: 9.1pt;
+    line-height: 1.22;
+    margin: 0;
+  }
+  .name {
+    font-size: 20pt;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin: 0;
+  }
+  .tagline {
+    font-size: 9.8pt;
+    color: #444;
+    font-weight: 600;
+    margin: 2px 0 3px;
+  }
+  .contact {
+    font-size: 8.8pt;
+    color: #555;
+    margin: 0 0 8px;
+  }
+  .contact a { color: #555; text-decoration: none; }
+  h2 {
+    font-size: 9.4pt;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #1a3e6f;
+    border-bottom: 1.2px solid #1a3e6f;
+    padding-bottom: 1.5px;
+    margin: 5px 0 3px;
+  }
+  .summary { margin: 0 0 1px; text-align: justify; }
+  .job { margin: 0 0 2.5px; }
+  .job-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .job-title { font-weight: 700; }
+  .job-meta { color: #555; font-size: 8.8pt; white-space: nowrap; padding-left: 8px; }
+  .job-sub { font-style: italic; color: #444; margin: 0 0 1px; }
+  ul { margin: 1px 0 0; padding-left: 15px; }
+  li { margin: 0 0 1px; }
+  .skills p { margin: 0 0 1px; }
+  .skills .k { font-weight: 700; display: inline-block; min-width: 86px; }
+  .edu { margin: 0; }
+  b, strong { font-weight: 700; }
+</style>
+</head>
+<body>
+
+  <div class="name">SABBIR AHMED</div>
+  <div class="tagline">Product Engineer · Zero-to-Launch · AI-Agent Orchestration</div>
+  <div class="contact">
+    Dhaka, Bangladesh · +880 1400 378361 · sabbirahmed8361@gmail.com ·
+    github.com/thesabbir · linkedin.com/in/sabbirahm
+  </div>
+
+  <h2>Summary</h2>
+  <p class="summary">
+    Product engineer who takes things zero-to-launch — and now ships at team-scale by directing AI agents.
+    10+ years building products end to end across Norway, the US, UAE, and Finland, including a founding role
+    through acquisition and a CTO seat. I care about outcomes, not architecture for its own sake: I design just
+    enough system to move fast and keep it correct. Currently founding a stealth venture solo, orchestrating
+    fleets of AI coding agents to build a real product the way a team used to.
+  </p>
+
+  <h2>Experience</h2>
+
+  <div class="job">
+    <div class="job-head">
+      <span><span class="job-title">Stealth — Founder &amp; Product Engineer</span></span>
+      <span class="job-meta">Remote · Feb 2026 – Present</span>
+    </div>
+    <div class="job-sub">Building and shipping a product solo, at a scope that used to need a team.</div>
+    <ul>
+      <li>Building a multi-tenant commerce product from zero, solo — by orchestrating fleets of AI coding agents under guardrails I designed to keep them honest.</li>
+      <li>Direct the agents end to end: decide what to build, set the rules, let them do the volume while automated checks and tests catch regressions — one campaign shipped a ~30k-LOC change across a 22-branch chain.</li>
+      <li>Designed just enough system to stay fast and correct under many non-deterministic agents editing at once (event-sourced backend, multi-tenant isolation, Rust core, TypeScript SDK).</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <span><span class="job-title">Cefalo — Staff / Lead Engineer (Consultant)</span></span>
+      <span class="job-meta">Dhaka, BD (Norway clients) · Nov 2023 – Feb 2026</span>
+    </div>
+    <div class="job-sub">Embedded engineering consultant for Norway-based SaaS clients — built growth features and shaped how their systems scaled.</div>
+    <ul>
+      <li>Built <b>growth features</b> for a <b>multi-tenant subscription-management platform</b>, contributing to its growth from <b>1 client and ~2k users to 300k+ users across 10–15 tenants</b>.</li>
+      <li>Advised on <b>system scaling and architecture</b> — made trade-off calls that kept the platform fast and reliable through that growth.</li>
+      <li>Mentored <b>2 engineers</b> and advised <b>3 other consultants</b> on architecture decisions for their own clients — a go-to for hard design calls across the team.</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <span><span class="job-title">Ngaze — Lead Engineer / CTO</span></span>
+      <span class="job-meta">Remote, New York · Mar 2023 – Oct 2023</span>
+    </div>
+    <div class="job-sub">Founding technical leader for a gamified, multi-tenant STEM learning platform.</div>
+    <ul>
+      <li>Shipped an <b>AI/LLM-powered course-authoring tool</b> that let non-engineers generate interactive lessons — including hosted Unity/Blender physics simulations — building LLM product features before it was mainstream.</li>
+      <li>Architected the platform as <b>multi-tenant SaaS with a partner model</b> (live with 2 partners) and took it from idea to working product as CTO — owned the stack, technical strategy, and hiring.</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <span><span class="job-title">Fasset — Senior Software Engineer</span></span>
+      <span class="job-meta">Remote, Dubai, UAE · Aug 2021 – Mar 2023</span>
+    </div>
+    <div class="job-sub">Early engineer on a regulated crypto exchange — joined when the infrastructure was struggling and rebuilt it to scale.</div>
+    <ul>
+      <li>Diagnosed a struggling early-stage infrastructure and <b>cut core-service cost 50%</b> through caching, optimization, and a service-oriented redesign — laying foundations the platform later scaled on (now serving millions of users).</li>
+      <li>Shipped the <b>P2P exchange launch</b> and core trading APIs for emerging-market users.</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <span><span class="job-title">BAIA Group — Product Consultant (Contract)</span></span>
+      <span class="job-meta">Remote, Helsinki, FI · Jun 2020 – Aug 2021</span>
+    </div>
+    <ul>
+      <li>Built and shipped a logistics tracing-and-verification web app end to end for supply-chain security — designed for low-trust environments and optimized for 2G/3G connectivity.</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <span><span class="job-title">Shohoz — Senior Software Engineer</span></span>
+      <span class="job-meta">Dhaka, BD · May 2019 – Jun 2020</span>
+    </div>
+    <ul>
+      <li>As an individual contributor inside the Shohoz super-app: brought <b>food delivery to web</b> and <b>launched truck rental across app and web</b>; modernized the legacy frontends to React/Redux.</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <span><span class="job-title">Cookups — Founding / Lead Engineer</span></span>
+      <span class="job-meta">Dhaka, BD · Feb 2017 – May 2019</span>
+    </div>
+    <div class="job-sub">Founding engineer at a home-cook marketplace — built to acquisition by Chaldal.</div>
+    <ul>
+      <li>Built and shipped the <b>food-delivery app</b> (web, iOS, Android from one React / React Native codebase) and the <b>back-office system</b> that ran operations.</li>
+      <li><b>Hired and managed a team of 4 engineers</b>, leading the product to acquisition by <b>Chaldal</b> (chaldal.com).</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <span><span class="job-title">East West Media Group — Software Engineer / Team Lead</span></span>
+      <span class="job-meta">Dhaka, BD · 2016 – 2017</span>
+    </div>
+    <ul>
+      <li>Built a real-time messaging web app (WebRTC video calls, file transfer, screen sharing) in React/Redux and <b>led a team of 6 engineers</b>.</li>
+    </ul>
+  </div>
+
+  <h2>Technical Skills</h2>
+  <div class="skills">
+    <p><span class="k">AI &amp; Agentic</span>AI-agent orchestration, LLM application development, OpenAI / LangChain, agent-driven delivery workflows</p>
+    <p><span class="k">Product</span>Zero-to-launch delivery, end-to-end ownership, roadmap &amp; trade-off calls, cross-platform (web / iOS / Android)</p>
+    <p><span class="k">Languages</span>TypeScript, JavaScript, Rust</p>
+    <p><span class="k">Frontend</span>React, Next.js, React Native, Redux, Tailwind</p>
+    <p><span class="k">Backend</span>Node.js (NestJS, Express)</p>
+    <p><span class="k">Data</span>PostgreSQL, MongoDB, Redis</p>
+    <p><span class="k">Cloud &amp; Infra</span>Linux, AWS (ECS, RDS, S3, CloudFront), GCP, Vercel, Kubernetes, Docker, Cloudflare, GitHub Actions</p>
+  </div>
+
+  <h2>Education</h2>
+  <p class="edu">B.Sc. in Computer Science · University of Information Technology and Sciences — Dhaka, BD</p>
+
+</body>
+</html>
