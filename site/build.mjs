@@ -38,6 +38,7 @@ const content = {
     { label: "Email", href: "mailto:sabbirahmed8361@gmail.com", text: "sabbirahmed8361@gmail.com" },
     { label: "GitHub", href: "https://github.com/thesabbir", text: "github.com/thesabbir" },
     { label: "LinkedIn", href: "https://linkedin.com/in/sabbirahm", text: "linkedin.com/in/sabbirahm" },
+    { label: "X", href: "https://x.com/sabbbbbir", text: "x.com/sabbbbbir" },
   ],
 
   // "How I work" — the differentiator. Grounded only in known facts.
@@ -199,6 +200,8 @@ const html = `<!doctype html>
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@sabbbbbir">
+<meta name="twitter:creator" content="@sabbbbbir">
 <meta name="twitter:title" content="${content.name} — Product Engineer">
 <meta name="twitter:description" content="I build products by conducting AI agents — and designing the systems that keep them honest.">
 <meta name="twitter:image" content="${SITE_URL}og.png">
