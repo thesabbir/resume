@@ -156,7 +156,9 @@ function renderMarkdown(md) {
 
 const linkRow = content.links
   .map((l) => `<a class="u" href="${l.href}">${l.text}</a>`)
-  .join('<span class="dot">·</span>');
+  // Zero-width space after each separator gives the row a break opportunity,
+  // so on narrow screens links wrap (dot trailing its link) instead of overflowing.
+  .join('<span class="dot">·</span>&#8203;');
 
 const workRows = content.work
   .map(
